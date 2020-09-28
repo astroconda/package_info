@@ -7,4 +7,4 @@ except DistributionNotFound:
     # package is not installed
     __version__ = 'unknown'
 
-from . import package_data
+from . import package_info

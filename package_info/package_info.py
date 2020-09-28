@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 from pkg_resources import get_distribution
-import sys
-import json
-
 
 def get_package_info(name):
     read_desc = False
@@ -57,23 +54,3 @@ def get_package_info(name):
             result["description"] += record + '\n'
 
     return result
-
-if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Not enough arguments: need package name", file=sys.stderr)
-        exit(1)
-
-    name = sys.argv[1]
-    result = get_package_info(name)
-
-    if len(sys.argv) < 3:
-        # Dump all data as JSON
-        print(json.dumps(result, indent=4))
-    else:
-        # Dump the value of a key as JSON
-        pattern = sys.argv[2]
-        try:
-            print(json.dumps(result[pattern], indent=4))
-        except KeyError:
-            print("{}")
-            exit(1)
